@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditColoniaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditColoniaLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{coloniaController.selected.id}" title="#{bundle.EditColoniaTitle_id}" required="true" requiredMessage="#{bundle.EditColoniaRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.EditColoniaLabel_estado}" for="estado" />
+                    <h:inputTextarea rows="4" cols="30" id="estado" value="#{coloniaController.selected.estado}" title="#{bundle.EditColoniaTitle_estado}" required="true" requiredMessage="#{bundle.EditColoniaRequiredMessage_estado}"/>
+                    <h:outputLabel value="#{bundle.EditColoniaLabel_municipio}" for="municipio" />
+                    <h:inputTextarea rows="4" cols="30" id="municipio" value="#{coloniaController.selected.municipio}" title="#{bundle.EditColoniaTitle_municipio}" required="true" requiredMessage="#{bundle.EditColoniaRequiredMessage_municipio}"/>
+                    <h:outputLabel value="#{bundle.EditColoniaLabel_colonia}" for="colonia" />
+                    <h:inputTextarea rows="4" cols="30" id="colonia" value="#{coloniaController.selected.colonia}" title="#{bundle.EditColoniaTitle_colonia}" required="true" requiredMessage="#{bundle.EditColoniaRequiredMessage_colonia}"/>
+                    <h:outputLabel value="#{bundle.EditColoniaLabel_latitud}" for="latitud" />
+                    <h:inputText id="latitud" value="#{coloniaController.selected.latitud}" title="#{bundle.EditColoniaTitle_latitud}" required="true" requiredMessage="#{bundle.EditColoniaRequiredMessage_latitud}"/>
+                    <h:outputLabel value="#{bundle.EditColoniaLabel_longitud}" for="longitud" />
+                    <h:inputText id="longitud" value="#{coloniaController.selected.longitud}" title="#{bundle.EditColoniaTitle_longitud}" required="true" requiredMessage="#{bundle.EditColoniaRequiredMessage_longitud}"/>
+                </h:panelGrid>
+                <h:commandLink action="#{coloniaController.update}" value="#{bundle.EditColoniaSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditColoniaViewLink}"/>
+                <br />
+                <h:commandLink action="#{coloniaController.prepareList}" value="#{bundle.EditColoniaShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditColoniaIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

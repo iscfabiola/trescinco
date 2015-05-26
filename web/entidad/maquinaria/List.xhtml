@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListMaquinariaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListMaquinariaEmpty}" rendered="#{maquinariaController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{maquinariaController.items.rowCount > 0}">
+                    <h:outputText value="#{maquinariaController.pagination.pageFirstItem + 1}..#{maquinariaController.pagination.pageLastItem + 1}/#{maquinariaController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{maquinariaController.previous}" value="#{bundle.Previous} #{maquinariaController.pagination.pageSize}" rendered="#{maquinariaController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{maquinariaController.next}" value="#{bundle.Next} #{maquinariaController.pagination.pageSize}" rendered="#{maquinariaController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{maquinariaController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMaquinariaTitle_codigo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.codigo}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMaquinariaTitle_descripcion}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.descripcion}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMaquinariaTitle_precio}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.precio}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMaquinariaTitle_peso}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.peso}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMaquinariaTitle_nombre}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nombre}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{maquinariaController.prepareView}" value="#{bundle.ListMaquinariaViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{maquinariaController.prepareEdit}" value="#{bundle.ListMaquinariaEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{maquinariaController.destroy}" value="#{bundle.ListMaquinariaDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{maquinariaController.prepareCreate}" value="#{bundle.ListMaquinariaCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListMaquinariaIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewLineaventaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewLineaventaLabel_id}"/>
+                    <h:outputText value="#{lineaventaController.selected.id}" title="#{bundle.ViewLineaventaTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewLineaventaLabel_cantidad}"/>
+                    <h:outputText value="#{lineaventaController.selected.cantidad}" title="#{bundle.ViewLineaventaTitle_cantidad}"/>
+                    <h:outputText value="#{bundle.ViewLineaventaLabel_maquinaria}"/>
+                    <h:outputText value="#{lineaventaController.selected.maquinaria}" title="#{bundle.ViewLineaventaTitle_maquinaria}"/>
+                    <h:outputText value="#{bundle.ViewLineaventaLabel_venta}"/>
+                    <h:outputText value="#{lineaventaController.selected.venta}" title="#{bundle.ViewLineaventaTitle_venta}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{lineaventaController.destroyAndView}" value="#{bundle.ViewLineaventaDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewLineaventaEditLink}"/>
+                <br />
+                <h:commandLink action="#{lineaventaController.prepareCreate}" value="#{bundle.ViewLineaventaCreateLink}" />
+                <br />
+                <h:commandLink action="#{lineaventaController.prepareList}" value="#{bundle.ViewLineaventaShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewLineaventaIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

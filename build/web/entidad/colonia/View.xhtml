@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewColoniaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewColoniaLabel_id}"/>
+                    <h:outputText value="#{coloniaController.selected.id}" title="#{bundle.ViewColoniaTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewColoniaLabel_estado}"/>
+                    <h:outputText value="#{coloniaController.selected.estado}" title="#{bundle.ViewColoniaTitle_estado}"/>
+                    <h:outputText value="#{bundle.ViewColoniaLabel_municipio}"/>
+                    <h:outputText value="#{coloniaController.selected.municipio}" title="#{bundle.ViewColoniaTitle_municipio}"/>
+                    <h:outputText value="#{bundle.ViewColoniaLabel_colonia}"/>
+                    <h:outputText value="#{coloniaController.selected.colonia}" title="#{bundle.ViewColoniaTitle_colonia}"/>
+                    <h:outputText value="#{bundle.ViewColoniaLabel_latitud}"/>
+                    <h:outputText value="#{coloniaController.selected.latitud}" title="#{bundle.ViewColoniaTitle_latitud}"/>
+                    <h:outputText value="#{bundle.ViewColoniaLabel_longitud}"/>
+                    <h:outputText value="#{coloniaController.selected.longitud}" title="#{bundle.ViewColoniaTitle_longitud}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{coloniaController.destroyAndView}" value="#{bundle.ViewColoniaDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewColoniaEditLink}"/>
+                <br />
+                <h:commandLink action="#{coloniaController.prepareCreate}" value="#{bundle.ViewColoniaCreateLink}" />
+                <br />
+                <h:commandLink action="#{coloniaController.prepareList}" value="#{bundle.ViewColoniaShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewColoniaIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

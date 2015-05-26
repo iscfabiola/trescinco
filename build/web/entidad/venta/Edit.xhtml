@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditVentaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditVentaLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{ventaController.selected.id}" title="#{bundle.EditVentaTitle_id}" required="true" requiredMessage="#{bundle.EditVentaRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.EditVentaLabel_fechaventa}" for="fechaventa" />
+                    <h:inputText id="fechaventa" value="#{ventaController.selected.fechaventa}" title="#{bundle.EditVentaTitle_fechaventa}" required="true" requiredMessage="#{bundle.EditVentaRequiredMessage_fechaventa}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditVentaLabel_fechaestimada}" for="fechaestimada" />
+                    <h:inputText id="fechaestimada" value="#{ventaController.selected.fechaestimada}" title="#{bundle.EditVentaTitle_fechaestimada}" required="true" requiredMessage="#{bundle.EditVentaRequiredMessage_fechaestimada}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditVentaLabel_sucursal}" for="sucursal" />
+                    <h:selectOneMenu id="sucursal" value="#{ventaController.selected.sucursal}" title="#{bundle.EditVentaTitle_sucursal}" required="true" requiredMessage="#{bundle.EditVentaRequiredMessage_sucursal}">
+                        <f:selectItems value="#{sucursalController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditVentaLabel_clientes}" for="clientes" />
+                    <h:selectOneMenu id="clientes" value="#{ventaController.selected.clientes}" title="#{bundle.EditVentaTitle_clientes}" required="true" requiredMessage="#{bundle.EditVentaRequiredMessage_clientes}">
+                        <f:selectItems value="#{clientesController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{ventaController.update}" value="#{bundle.EditVentaSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditVentaViewLink}"/>
+                <br />
+                <h:commandLink action="#{ventaController.prepareList}" value="#{bundle.EditVentaShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditVentaIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

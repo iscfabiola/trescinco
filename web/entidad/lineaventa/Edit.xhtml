@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditLineaventaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditLineaventaLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{lineaventaController.selected.id}" title="#{bundle.EditLineaventaTitle_id}" required="true" requiredMessage="#{bundle.EditLineaventaRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.EditLineaventaLabel_cantidad}" for="cantidad" />
+                    <h:inputText id="cantidad" value="#{lineaventaController.selected.cantidad}" title="#{bundle.EditLineaventaTitle_cantidad}" required="true" requiredMessage="#{bundle.EditLineaventaRequiredMessage_cantidad}"/>
+                    <h:outputLabel value="#{bundle.EditLineaventaLabel_maquinaria}" for="maquinaria" />
+                    <h:selectOneMenu id="maquinaria" value="#{lineaventaController.selected.maquinaria}" title="#{bundle.EditLineaventaTitle_maquinaria}" required="true" requiredMessage="#{bundle.EditLineaventaRequiredMessage_maquinaria}">
+                        <f:selectItems value="#{maquinariaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditLineaventaLabel_venta}" for="venta" />
+                    <h:selectOneMenu id="venta" value="#{lineaventaController.selected.venta}" title="#{bundle.EditLineaventaTitle_venta}" required="true" requiredMessage="#{bundle.EditLineaventaRequiredMessage_venta}">
+                        <f:selectItems value="#{ventaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{lineaventaController.update}" value="#{bundle.EditLineaventaSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditLineaventaViewLink}"/>
+                <br />
+                <h:commandLink action="#{lineaventaController.prepareList}" value="#{bundle.EditLineaventaShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditLineaventaIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

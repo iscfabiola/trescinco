@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewCamionTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewCamionLabel_id}"/>
+                    <h:outputText value="#{camionController.selected.id}" title="#{bundle.ViewCamionTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewCamionLabel_capacidad}"/>
+                    <h:outputText value="#{camionController.selected.capacidad}" title="#{bundle.ViewCamionTitle_capacidad}"/>
+                    <h:outputText value="#{bundle.ViewCamionLabel_bodega}"/>
+                    <h:outputText value="#{camionController.selected.bodega}" title="#{bundle.ViewCamionTitle_bodega}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{camionController.destroyAndView}" value="#{bundle.ViewCamionDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewCamionEditLink}"/>
+                <br />
+                <h:commandLink action="#{camionController.prepareCreate}" value="#{bundle.ViewCamionCreateLink}" />
+                <br />
+                <h:commandLink action="#{camionController.prepareList}" value="#{bundle.ViewCamionShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewCamionIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
